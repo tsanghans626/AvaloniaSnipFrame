@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="Avalonia.SnipFrame/App.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
+        <entry key="Avalonia.SnipFrame/Icons.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
         <entry key="Avalonia.SnipFrame/Views/MainWindow.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
       </map>
     </option>
