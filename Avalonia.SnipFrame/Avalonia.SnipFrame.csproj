@@ -27,5 +27,6 @@
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
         <PackageReference Include="HotAvalonia" Version="3.0.0" PrivateAssets="All" Publish="True" />
         <PackageReference Include="Markdig" Version="0.41.0" />
+        <PackageReference Include="Markdown.Avalonia" Version="11.0.2" />
     </ItemGroup>
 </Project>

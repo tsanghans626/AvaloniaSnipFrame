@@ -3,14 +3,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Avalonia.SnipFrame.Views.MarkdownView"
+             x:Class="Avalonia.SnipFrame.Views.DocumentView"
              xmlns:vm="using:Avalonia.SnipFrame.ViewModels"
-             x:DataType="vm:MarkdownViewModel">
+             x:DataType="vm:DocumentViewModel"
+             xmlns:md="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia">
 
     <!-- <Design.DataContext> -->
-        <!-- This only sets the DataContext for the previewer in an IDE,
+    <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <!-- <vm:MarkdownViewModel /> -->
+    <!-- <vm:MarkdownViewModel /> -->
     <!-- </Design.DataContext> -->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -43,9 +44,9 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4,4,4,12" Grid.Row="0" FontSize="18">Markdown预览</TextBlock>
+                <!-- <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4,4,4,12" Grid.Row="0" FontSize="18">Markdown预览</TextBlock> -->
                 <ScrollViewer Grid.Row="1">
-                    <TextBlock Text="{Binding SelectedMarkdown.Content}"/>
+                    <md:MarkdownScrollViewer Markdown="{Binding SelectedMarkdown.Content}" />
                 </ScrollViewer>
             </Grid>
         </Border>

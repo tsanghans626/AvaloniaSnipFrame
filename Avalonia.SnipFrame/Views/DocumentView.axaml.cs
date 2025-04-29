@@ -5,11 +5,11 @@ using Avalonia.SnipFrame.ViewModels;
 
 namespace Avalonia.SnipFrame.Views;
 
-public partial class MarkdownView : UserControl
+public partial class DocumentView : UserControl
 {
-    public MarkdownView()
+    public DocumentView()
     {
-        this.DataContext = new MarkdownViewModel();
+        this.DataContext = new DocumentViewModel();
         InitializeComponent();
     }
 }

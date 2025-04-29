@@ -13,7 +13,7 @@ public class MarkdownModel
     public string Filename { get; set; }
     public string Content { get; set; }
     public DateTime LastModified { get; set; }
-    private static string _directory = "Assets/MarkdownFiles";
+    private static string _directory = "D:\\My\\Avalonia.SnipFrame\\Avalonia.SnipFrame\\Assets\\MarkdownFiles";
 
     public MarkdownModel(string filename, string content)
     {
@@ -36,7 +36,7 @@ public class MarkdownModel
         try
         {
             // 获取Markdown文件夹路径
-            string folderPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _directory);
+            string folderPath = Path.Combine(_directory);
 
             // 确保文件夹存在
             if (!Directory.Exists(folderPath))

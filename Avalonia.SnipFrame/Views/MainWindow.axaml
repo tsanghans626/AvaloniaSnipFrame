@@ -89,7 +89,7 @@
 
             <!-- 左侧面板 -->
             <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Background="White" Padding="8">
-                <views:MarkdownView />
+                <views:DocumentView />
             </Border>
 
             <!-- 右侧面板 -->
