@@ -1,52 +1,53 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:Avalonia.SnipFrame.ViewModels"
+             xmlns:views="using:Avalonia.SnipFrame.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
              x:Class="Avalonia.SnipFrame.Views.PluginManageView"
              x:DataType="vm:PluginManageViewModel">
 
     <Grid RowDefinitions="Auto,*">
         <!-- 顶部区域：显示运行中的插件和装载中的知识库 -->
-        <Grid Grid.Row="0" Margin="10" RowDefinitions="Auto,Auto" Background="#F5F5F5">
-            <TextBlock Grid.Row="0" Text="活动状态" FontWeight="Bold" Margin="0,0,0,10"/>
-            
+        <Grid Grid.Row="0" RowDefinitions="Auto,Auto" Background="#F5F5F5">
+            <TextBlock Grid.Row="0" Text="活动状态" FontWeight="Bold" Margin="0,0,0,0" />
+
             <!-- 运行中的插件和装载中的知识库面板 -->
-            <StackPanel Grid.Row="1" Spacing="10">
+            <StackPanel Grid.Row="1" Spacing="8" Orientation="Horizontal">
                 <!-- 运行中的插件卡片 -->
-                <Border Background="White" CornerRadius="4" Padding="10" BorderBrush="#EEEEEE" BorderThickness="1">
-                    <StackPanel>
-                        <TextBlock Text="运行中的插件" FontWeight="SemiBold"/>
-                        <ItemsControl ItemsSource="{Binding RunningPlugin}">
-                            <!-- 简化版插件项目模板 -->
-                        </ItemsControl>
-                    </StackPanel>
-                </Border>
-                
+                <views:PluginView DataContext="{Binding RunningPlugin}" />
                 <!-- 装载中的知识库卡片 -->
-                <Border Background="White" CornerRadius="4" Padding="10" BorderBrush="#EEEEEE" BorderThickness="1">
-                    <StackPanel>
-                        <TextBlock Text="装载中的知识库" FontWeight="SemiBold"/>
-                        <ItemsControl ItemsSource="{Binding LoadingKnowledgeBase}">
-                            <!-- 简化版知识库项目模板 -->
-                        </ItemsControl>
-                    </StackPanel>
-                </Border>
+                <views:KnowledgeView DataContext="{Binding LoadingKnowledge}" />
             </StackPanel>
         </Grid>
-        
+
         <!-- 底部区域：分段控件切换显示已安装插件和知识库 -->
         <TabControl Grid.Row="1" Margin="10">
             <!-- 已安装插件标签页 -->
             <TabItem Header="已安装插件">
-                <ListBox ItemsSource="{Binding AvailablePlugins}">
-                    <!-- 插件列表项模板 -->
-                </ListBox>
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding AvailablePlugins}" Margin="0,10,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <views:PluginView Margin="0,4,0,4" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </TabItem>
-            
+
             <!-- 已安装知识库标签页 -->
             <TabItem Header="已安装知识库">
-                <ListBox ItemsSource="{Binding AvailableKnowledgeBases}">
-                    <!-- 知识库列表项模板 -->
-                </ListBox>
+                <ScrollViewer>
+                    <ItemsControl ItemsSource="{Binding AvailableKnowledgeBases}" Margin="0,10,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <views:KnowledgeView Margin="0,4,0,4" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
             </TabItem>
         </TabControl>
     </Grid>

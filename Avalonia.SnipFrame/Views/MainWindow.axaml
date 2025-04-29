@@ -88,24 +88,13 @@
             </Grid.ColumnDefinitions>
 
             <!-- 左侧面板 -->
-            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Background="White" Padding="8">
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Background="White" >
                 <views:DocumentView />
             </Border>
 
             <!-- 右侧面板 -->
-            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" Background="White" Padding="8">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4" Grid.Row="0">功能区</TextBlock>
-                    <ListBox Grid.Row="1">
-                        <ListBoxItem>选项1</ListBoxItem>
-                        <ListBoxItem>选项2</ListBoxItem>
-                        <ListBoxItem>选项3</ListBoxItem>
-                    </ListBox>
-                </Grid>
+            <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" Background="White">
+                <views:PluginManageView/>
             </Border>
         </Grid>
 

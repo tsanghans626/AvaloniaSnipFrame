@@ -1,6 +1,8 @@
 // ViewModels/PluginManageViewModel.cs
 
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.SnipFrame.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -11,12 +13,12 @@ namespace Avalonia.SnipFrame.ViewModels
     public partial class PluginManageViewModel : ObservableObject
     {
         
-        [ObservableProperty] private PluginModel _runningPlugin;
-        [ObservableProperty] private PluginModel _selectedPlugin;
-        [ObservableProperty] private ObservableCollection<PluginModel> _availablePlugins = new();
-        [ObservableProperty] private KnowledgeBaseModel _loadingKnowledgeBase;
-        [ObservableProperty] private PluginModel _selectedKnowledgeBase;
-        [ObservableProperty] private ObservableCollection<KnowledgeBaseModel> _availableKnowledgeBases = new();
+        [ObservableProperty] private PluginViewModel _runningPlugin;
+        [ObservableProperty] private PluginViewModel _selectedPlugin;
+        [ObservableProperty] private ObservableCollection<PluginViewModel> _availablePlugins = new();
+        [ObservableProperty] private KnowledgeViewModel _loadingKnowledge;
+        [ObservableProperty] private KnowledgeViewModel _selectedKnowledgeBase;
+        [ObservableProperty] private ObservableCollection<KnowledgeViewModel> _availableKnowledgeBases = new();
         [ObservableProperty] private bool _isLoading;
 
         public PluginManageViewModel()
@@ -35,38 +37,49 @@ namespace Avalonia.SnipFrame.ViewModels
 
             // 模拟已安装插件数据
             AvailablePlugins.Clear();
-            AvailablePlugins.Add(new PluginModel
+            
+            var pluginModels = new List<PluginModel>();
+            pluginModels.Add(new PluginModel
             {
                 Id = "plugin1", Name = "代码片段管理器", Description = "管理和组织代码片段", Version = "1.0.0", Author = "开发者A",
                 IsEnabled = true, IsInstalled = true
             });
-            AvailablePlugins.Add(new PluginModel
+            pluginModels.Add(new PluginModel
             {
                 Id = "plugin2", Name = "Markdown增强", Description = "提供增强的Markdown编辑功能", Version = "2.1.0",
                 Author = "开发者B", IsEnabled = true, IsInstalled = true
             });
-            AvailablePlugins.Add(new PluginModel
+            pluginModels.Add(new PluginModel
             {
                 Id = "plugin3", Name = "代码格式化", Description = "自动格式化代码", Version = "1.5.2", Author = "开发者C",
                 IsEnabled = false, IsInstalled = true
             });
+            foreach (var pluginModel in pluginModels)
+            { 
+                AvailablePlugins.Add(new PluginViewModel(pluginModel));
+            }
             RunningPlugin = AvailablePlugins[0];
 
             // 模拟本地知识库数据
             AvailableKnowledgeBases.Clear();
-            AvailableKnowledgeBases.Add(new KnowledgeBaseModel
+            var knowledgeModels = new List<KnowledgeModel>();
+            knowledgeModels.Add(new KnowledgeModel
             {
                 Id = "knowledge1", Name = "祖安语录一", Description = "祖安语录一", Version = "1.0.1", Author = "开发者D",
             });
-            AvailableKnowledgeBases.Add(new KnowledgeBaseModel
+            knowledgeModels.Add(new KnowledgeModel
             {
                 Id = "knowledge2", Name = "祖安语录二", Description = "祖安语录二", Version = "0.9.0", Author = "开发者E",
             });
-            AvailableKnowledgeBases.Add(new KnowledgeBaseModel
+            knowledgeModels.Add(new KnowledgeModel
             {
                 Id = "knowledge3", Name = "祖安语录三", Description = "祖安语录三", Version = "1.2.0", Author = "开发者F",
             });
-            LoadingKnowledgeBase = AvailableKnowledgeBases[0];
+            foreach (var knowledgeModel in knowledgeModels)
+            { 
+                AvailableKnowledgeBases.Add(new KnowledgeViewModel(knowledgeModel));
+            }
+            LoadingKnowledge = AvailableKnowledgeBases[0];
 
             IsLoading = false;
         }

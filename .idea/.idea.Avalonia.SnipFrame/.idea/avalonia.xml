@@ -6,8 +6,11 @@
         <entry key="Avalonia.SnipFrame/App.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
         <entry key="Avalonia.SnipFrame/Icons.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
         <entry key="Avalonia.SnipFrame/Views/DocumentView.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
+        <entry key="Avalonia.SnipFrame/Views/KnowledgeView.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
         <entry key="Avalonia.SnipFrame/Views/MainWindow.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
         <entry key="Avalonia.SnipFrame/Views/MarkdownView.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
+        <entry key="Avalonia.SnipFrame/Views/PluginManageView.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
+        <entry key="Avalonia.SnipFrame/Views/PluginView.axaml" value="Avalonia.SnipFrame/Avalonia.SnipFrame.csproj" />
       </map>
     </option>
   </component>
