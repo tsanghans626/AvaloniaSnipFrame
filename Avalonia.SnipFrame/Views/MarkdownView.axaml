@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.SnipFrame.Views.MarkdownView"
+             xmlns:vm="using:Avalonia.SnipFrame.ViewModels"
+             x:DataType="vm:MarkdownViewModel">
+
+    <!-- <Design.DataContext> -->
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <!-- <vm:MarkdownViewModel /> -->
+    <!-- </Design.DataContext> -->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" MinWidth="150" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- 左侧菜单 -->
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4" Grid.Row="0">文档列表</TextBlock>
+            <ListBox Grid.Row="1" ItemsSource="{Binding  Markdowns }" SelectedItem="{Binding SelectedMarkdown}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Filename}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <!-- 右侧Markdown内容 -->
+        <Border Grid.Column="1" BorderBrush="#EEEEEE" BorderThickness="1,0,0,0" Padding="12,8,8,8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4,4,4,12" Grid.Row="0" FontSize="18">Markdown预览</TextBlock>
+                <ScrollViewer Grid.Row="1">
+                    <TextBlock Text="{Binding SelectedMarkdown.Content}"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
