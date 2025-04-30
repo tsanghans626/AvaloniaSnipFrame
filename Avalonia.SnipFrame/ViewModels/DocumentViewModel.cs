@@ -10,7 +10,7 @@ namespace Avalonia.SnipFrame.ViewModels;
 
 public partial class DocumentViewModel : ObservableObject
 {
-    [ObservableProperty] private MarkdownViewModel _selectedMarkdown;
+    [ObservableProperty] private MarkdownViewModel? _selectedMarkdown;
     public ObservableCollection<MarkdownViewModel> Markdowns { get; } = new();
 
     public DocumentViewModel()

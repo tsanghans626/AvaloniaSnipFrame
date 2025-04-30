@@ -9,7 +9,7 @@ public partial class DocumentView : UserControl
 {
     public DocumentView()
     {
-        this.DataContext = new DocumentViewModel();
         InitializeComponent();
+        DataContext = new DocumentViewModel();
     }
 }

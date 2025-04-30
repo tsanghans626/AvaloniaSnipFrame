@@ -8,13 +8,14 @@
              x:Class="Avalonia.SnipFrame.Views.PluginManageView"
              x:DataType="vm:PluginManageViewModel">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
         <!-- 顶部区域：显示运行中的插件和装载中的知识库 -->
-        <Grid Grid.Row="0" RowDefinitions="Auto,Auto" Background="#F5F5F5">
-            <TextBlock Grid.Row="0" Text="活动状态" FontWeight="Bold" Margin="0,0,0,0" />
-
+        <Grid Grid.Row="0" RowDefinitions="Auto,Auto" Background="#F5F5F5" HorizontalAlignment="Center">
+            <TextBlock Grid.Row="0" Text="运行中的" FontWeight="Bold" Margin="0,0,0,0" />
+        </Grid>
+        <Grid  Grid.Row="1" RowDefinitions="Auto,Auto" Background="#F5F5F5" Margin="0, 0, 0,0">
             <!-- 运行中的插件和装载中的知识库面板 -->
-            <StackPanel Grid.Row="1" Spacing="8" Orientation="Horizontal">
+            <StackPanel Grid.Row="1" Spacing="8" Orientation="Horizontal" HorizontalAlignment="Center" Margin="6, 14">
                 <!-- 运行中的插件卡片 -->
                 <views:PluginView DataContext="{Binding RunningPlugin}" />
                 <!-- 装载中的知识库卡片 -->
@@ -23,32 +24,48 @@
         </Grid>
 
         <!-- 底部区域：分段控件切换显示已安装插件和知识库 -->
-        <TabControl Grid.Row="1" Margin="10">
-            <!-- 已安装插件标签页 -->
-            <TabItem Header="已安装插件">
-                <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding AvailablePlugins}" Margin="0,10,0,0">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <views:PluginView Margin="0,4,0,4" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
+        <Grid Grid.Row="2" RowDefinitions="Auto,Auto"  HorizontalAlignment="Center" >
+            <TextBlock Grid.Row="0" Text="已安装的" FontWeight="Bold" Margin="0,2,0,2" />
+        </Grid>
+        <Grid Grid.Row="3" RowDefinitions="Auto,Auto" Background="#F5F5F5">
+            <TabControl   HorizontalAlignment="Left" Padding="8, 0,0,0">
+                <!-- 已安装插件标签页 -->
+                <TabItem Header="插件" FontSize="14" FontWeight="Bold">
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding AvailablePlugins}" >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <views:PluginView Margin="0,6,6,0" DataContext="{Binding}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </TabItem>
 
-            <!-- 已安装知识库标签页 -->
-            <TabItem Header="已安装知识库">
-                <ScrollViewer>
-                    <ItemsControl ItemsSource="{Binding AvailableKnowledgeBases}" Margin="0,10,0,0">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <views:KnowledgeView Margin="0,4,0,4" />
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
+                <!-- 已安装知识库标签页 -->
+                <TabItem Header="知识库" FontSize="14" FontWeight="Bold">
+                    <ScrollViewer>
+                        <ItemsControl ItemsSource="{Binding AvailableKnowledgeBases}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <views:KnowledgeView Margin="0,6,6,0"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        
     </Grid>
 </UserControl>

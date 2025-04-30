@@ -7,51 +7,52 @@
              xmlns:vm="using:Avalonia.SnipFrame.ViewModels"
              x:DataType="vm:PluginViewModel">
 
-    <Border Background="White" 
-            CornerRadius="8" 
-            BorderBrush="#E0E0E0" 
-            BorderThickness="1"
-            Padding="5"
-            MinWidth="200">
-        <Grid ColumnDefinitions="Auto,*,Auto">
-            <!-- 插件图标 -->
-            <Border Grid.Column="0" 
-                    Width="38" Height="38" 
-                    Background="#F5F5F5" 
-                    CornerRadius="6"
-                    Margin="0,0,12,0">
-                <PathIcon Data="M19,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10L12,6H19A2,2 0 0,1 21,8V18A2,2 0 0,1 19,20M13.54,11.29L9.88,11.29L9.88,13.12L13.54,13.12C14.05,13.12 14.42,13.44 14.42,14.17C14.42,14.9 14.05,15.23 13.54,15.23L9.88,15.23L9.88,17.06L13.54,17.06C15.24,17.06 16.07,16.06 16.07,14.17C16.07,12.28 15.24,11.29 13.54,11.29M7.5,11.29L7.5,17.06L6,17.06L6,13.12L4.5,13.12L4.5,11.29L7.5,11.29Z" 
-                           Width="24" Height="24"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"/>
-            </Border>
-            
-            <!-- 插件信息 -->
-            <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="14"/>
-                    <Border Background="#E3F2FD" CornerRadius="4" Padding="6,2">
-                        <TextBlock Text="{Binding Version}" FontSize="12" Foreground="#1976D2"/>
-                    </Border>
+            <!-- 实际内容 - 当数据不为null时显示 -->
+        <Border Background="White"
+                CornerRadius="8"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1"
+                Padding="5"
+                Width="205">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- 插件图标 -->
+                <Border Grid.Column="0"
+                        Width="38" Height="38"
+                        Background="#F5F5F5"
+                        CornerRadius="6"
+                        Margin="0,0,12,0">
+                    <PathIcon
+                        Data="M19,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10L12,6H19A2,2 0 0,1 21,8V18A2,2 0 0,1 19,20M13.54,11.29L9.88,11.29L9.88,13.12L13.54,13.12C14.05,13.12 14.42,13.44 14.42,14.17C14.42,14.9 14.05,15.23 13.54,15.23L9.88,15.23L9.88,17.06L13.54,17.06C15.24,17.06 16.07,16.06 16.07,14.17C16.07,12.28 15.24,11.29 13.54,11.29M7.5,11.29L7.5,17.06L6,17.06L6,13.12L4.5,13.12L4.5,11.29L7.5,11.29Z"
+                        Width="24" Height="24"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </Border>
+
+                <!-- 插件信息 -->
+                <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+                    <DockPanel LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left"
+                                  Text="{Binding Name}"
+                                  FontWeight="SemiBold"
+                                  FontSize="14"
+                                  VerticalAlignment="Center" />
+                        <Border DockPanel.Dock="Right"
+                                Background="#E3F2FD"
+                                CornerRadius="4"
+                                Padding="6,2">
+                            <TextBlock Text="{Binding Version}"
+                                      FontSize="12"
+                                      Foreground="#1976D2" />
+                        </Border>
+                    </DockPanel>
+
+                    <TextBlock Text="{Binding Description}"
+                              TextWrapping="Wrap"
+                              MaxLines="2"
+                              Opacity="0.7"
+                              FontSize="12" />
                 </StackPanel>
-                
-                <TextBlock Text="{Binding Description}"
-                           TextWrapping="Wrap"
-                           MaxLines="2"
-                           Opacity="0.7"
-                           FontSize="12"/>
-                
-                <!-- <StackPanel Orientation="Horizontal" Spacing="4"> -->
-                <!--     <TextBlock Text="作者"  -->
-                <!--                FontSize="12"  -->
-                <!--                Opacity="0.6" -->
-                <!--                FontWeight="Bold"/> -->
-                <!--     <TextBlock Text="{Binding Author}"  -->
-                <!--                FontSize="12"  -->
-                <!--                Opacity="0.6"/> -->
-                <!-- </StackPanel> -->
-            </StackPanel>
-            
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
+        
 </UserControl>

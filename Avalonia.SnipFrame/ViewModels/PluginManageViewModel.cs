@@ -7,27 +7,29 @@ using System.Threading.Tasks;
 using Avalonia.SnipFrame.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using ReactiveUI;
+using System.Reactive.Concurrency;
 
 namespace Avalonia.SnipFrame.ViewModels
 {
     public partial class PluginManageViewModel : ObservableObject
     {
         
-        [ObservableProperty] private PluginViewModel _runningPlugin;
-        [ObservableProperty] private PluginViewModel _selectedPlugin;
+        [ObservableProperty] private PluginViewModel? _runningPlugin;
+        [ObservableProperty] private PluginViewModel? _selectedPlugin;
         [ObservableProperty] private ObservableCollection<PluginViewModel> _availablePlugins = new();
-        [ObservableProperty] private KnowledgeViewModel _loadingKnowledge;
-        [ObservableProperty] private KnowledgeViewModel _selectedKnowledgeBase;
+        [ObservableProperty] private KnowledgeViewModel? _loadingKnowledge;
+        [ObservableProperty] private KnowledgeViewModel? _selectedKnowledgeBase;
         [ObservableProperty] private ObservableCollection<KnowledgeViewModel> _availableKnowledgeBases = new();
-        [ObservableProperty] private bool _isLoading;
+        [ObservableProperty] private bool _isLoading = false;
 
         public PluginManageViewModel()
         {
             // 模拟数据加载
             LoadPluginsAsync();
         }
-
         [RelayCommand]
+
         private async Task LoadPluginsAsync()
         {
             IsLoading = true;
@@ -47,7 +49,7 @@ namespace Avalonia.SnipFrame.ViewModels
             pluginModels.Add(new PluginModel
             {
                 Id = "plugin2", Name = "Markdown增强", Description = "提供增强的Markdown编辑功能", Version = "2.1.0",
-                Author = "开发者B", IsEnabled = true, IsInstalled = true
+                Author = "开发者B", IsEnabled = false, IsInstalled = true
             });
             pluginModels.Add(new PluginModel
             {
@@ -65,15 +67,15 @@ namespace Avalonia.SnipFrame.ViewModels
             var knowledgeModels = new List<KnowledgeModel>();
             knowledgeModels.Add(new KnowledgeModel
             {
-                Id = "knowledge1", Name = "祖安语录一", Description = "祖安语录一", Version = "1.0.1", Author = "开发者D",
+                Id = "knowledge1", Name = "祖安语录一", Description = "祖安语录一", IsEnabled = true
             });
             knowledgeModels.Add(new KnowledgeModel
             {
-                Id = "knowledge2", Name = "祖安语录二", Description = "祖安语录二", Version = "0.9.0", Author = "开发者E",
+                Id = "knowledge2", Name = "祖安语录二", Description = "祖安语录二", IsEnabled = false
             });
             knowledgeModels.Add(new KnowledgeModel
             {
-                Id = "knowledge3", Name = "祖安语录三", Description = "祖安语录三", Version = "1.2.0", Author = "开发者F",
+                Id = "knowledge3", Name = "祖安语录三", Description = "祖安语录三",IsEnabled = false
             });
             foreach (var knowledgeModel in knowledgeModels)
             { 
