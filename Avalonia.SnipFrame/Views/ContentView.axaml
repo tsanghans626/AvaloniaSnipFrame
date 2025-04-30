@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Avalonia.SnipFrame.ViewModels"
+             xmlns:views="using:Avalonia.SnipFrame.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Avalonia.SnipFrame.Views.ContentView"
+             x:DataType="vm:ContentViewModel">
+
+    <Grid >
+        <TabControl ItemsSource="{Binding Tabs}" SelectedItem="{Binding SelectedTab}">
+            <TabControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:TabItemViewModel">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock Grid.Column="0" Text="{Binding Header}" VerticalAlignment="Center" Margin="6,0,5,0"
+                                   FontSize="14" FontWeight="Bold" />
+                        <Button Grid.Column="1"
+                                Command="{Binding CloseCommand}"
+                                CommandParameter="{Binding}"
+                                IsVisible="{Binding CanClose}"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Padding="3"
+                                Margin="0">
+                            <TextBlock Text="✕" FontSize="10" VerticalAlignment="Center" />
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate x:DataType="vm:TabItemViewModel">
+                    <ContentControl Content="{Binding Content}">
+                        <ContentControl.DataTemplates>
+                            <DataTemplate DataType="vm:DocumentViewModel">
+                                <views:DocumentView />
+                            </DataTemplate>
+                            <!-- 可以添加其他ViewModel类型的DataTemplate -->
+                        </ContentControl.DataTemplates>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</UserControl>

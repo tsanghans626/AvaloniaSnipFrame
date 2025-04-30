@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4" Grid.Row="0">文档列表</TextBlock>
+            <!-- <TextBlock Foreground="Black" FontWeight="SemiBold" Margin="4" Grid.Row="0">文档列表</TextBlock> -->
             <ListBox Grid.Row="1" ItemsSource="{Binding  Markdowns }" SelectedItem="{Binding SelectedMarkdown}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
